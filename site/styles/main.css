@@ -13,7 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+body{
+  background-image: url("../images/Batman_Arkham_Knight_Background_Showdown.jpg");
+  background-size: 100%;
+}
 html, body {
   font-family: 'Roboto', 'Helvetica', sans-serif;
 }
