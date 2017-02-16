@@ -2,6 +2,8 @@
 
 <html lang="en">
 <head>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="Learn how to use the Firebase platform on the Web">
@@ -31,48 +33,23 @@
     <link rel="stylesheet" href="styles/main.css">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-<button id="change-name" onclick="myFunction()">Try it</button>
+<body style="background-color: antiquewhite">
+<div class="col-md-8 col-md-offset-2" style="background-color: white; height: 1130px; padding-top: 50px;">
+<button class="btn btn-primary" id="change-name" onclick="myFunction()">Who are you?</button>
 <!-- Build your app here-->
 <h2>Hello <span id="my-name">World</span>!!!</h2>
 <h2>From <span id="city">World</span></h2>
 
-<script>
-
-    function myFunction() {
-        var person = prompt("Please enter your name", "Batman");
-        if (person != null) {
-            document.getElementById("my-name").innerHTML = person;
-        }
-        var city = prompt("Please enter your city", "Gotham");
-        if (city != null) {
-            document.getElementById("city").innerHTML = city;
-        }
-        var colour = prompt("Please enter your favourite colour", "Pink");
-        if (colour != null) {
-            document.getElementById("my-name").style.color = colour;
-        }
-    }
-
-</script>
-
-<button id="learn-more" class="btn btn-success btn-lg" type="button">Learn More</button>
 
 
-<script>
-
-    $('#learn-more').click( function() {
-        alert( 'Learn more about what?');
-    });
-
-</script>
+    <iframe width="360" height="615" src="https://www.youtube.com/embed/EXeTwQWrcwY" frameborder="0" allowfullscreen></iframe>
 
 <div>
-    <input type="textfield" id="simple-comment"></input>
-    <button id="simple-send">Post comment</button>
+    <input type="textarea" id="simple-comment" style="width: 300px; margin-top: 20px"></input>
+    <button class="btn btn-info" id="simple-send">Post comment</button>
 </div>
 
-<div class="col-md-8 col-md-offset-2">
+<div>
     <h2>Simple Comments</h2>
     <div id="simple-comments">
         <ul>
@@ -80,12 +57,31 @@
     </div>
 </div>
 
-<script>
-    $("#simple-send").on("click", function(e) {
-        $("#simple-comments ul").append("<li>" + $("#simple-comment").val() + "</li>");
-        $("#simple-comment").val("");
-    });
-</script>
+    <script>
+        var person;
+        function myFunction() {
+            person = prompt("Please enter your name", "Batman");
+            if (person != null) {
+                document.getElementById("my-name").innerHTML = person;
+            }
+            var city = prompt("Please enter your city", "Gotham");
+            if (city != null) {
+                document.getElementById("city").innerHTML = city;
+            }
+            var colour = prompt("Please enter your favourite colour", "Yellow");
+            if (colour != null) {
+                document.getElementById("my-name").style.color = colour;
+            }
+        }
 
+        $("#simple-send").on("click", function(e) {
+            $("#simple-comments ul").append("<li>" + person + ": " + $("#simple-comment").val() + "</li>");
+            $("#simple-comment").val("");
+        });
+
+    </script>
+
+
+</div>
 </body>
 </html>
