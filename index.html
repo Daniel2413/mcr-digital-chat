@@ -2,13 +2,11 @@
 
 <html lang="en">
 <head>
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="Learn how to use the Firebase platform on the Web">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Friendly Chat</title>
+    <title>Batman Chat</title>
 
     <!-- Disable tap highlight on IE -->
     <meta name="msapplication-tap-highlight" content="no">
@@ -32,55 +30,67 @@
           href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
     <link rel="stylesheet" href="styles/main.css">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico"/>
 </head>
-<body style="background-color: antiquewhite">
-<div class="col-md-8 col-md-offset-2" style="background-color: white; height: 1130px; padding-top: 50px;">
-<button class="btn btn-primary" id="change-name" onclick="myFunction()">Who are you?</button>
+<body>
+
+
+<div class="col-md-6 col-md-offset-3" style="background-color: white; height: 100%; min-height: 1200px;">
+    <div class="page-header">
+        <h1>Batman Chat <small>For All Your Batman Needs</small></h1>
+    </div>
+    <div class="signinout">
+        <button id="signin">Sign in</button>
+        <button id="signout">Sign out</button>
+    </div>
 <!-- Build your app here-->
 <h2>Hello <span id="my-name">World</span>!!!</h2>
 <h2>From <span id="city">World</span></h2>
 
 
 
-    <iframe width="360" height="615" src="https://www.youtube.com/embed/EXeTwQWrcwY" frameborder="0" allowfullscreen></iframe>
+    <iframe width="360" height="450" src="https://www.youtube.com/embed/EXeTwQWrcwY" frameborder="0" allowfullscreen></iframe>
 
-<div>
-    <input type="textarea" id="simple-comment" style="width: 300px; margin-top: 20px"></input>
-    <button class="btn btn-info" id="simple-send">Post comment</button>
-</div>
-
-<div>
-    <h2>Simple Comments</h2>
-    <div id="simple-comments">
-        <ul>
-        </ul>
+    <div class="messaging">
+        <div class="form-group">
+            <label for="name">Display Name:</label>
+            <input type="text" class="form-control" id="name" placeholder="Jane Doe">
+        </div>
+        <div class="form-group">
+            <label for="message">Comment:</label>
+            <input type="text" id="message" class="form-control" placeholder="comment goes here" >
+        </div>
+        <button id="send" class="btn btn-default">Post comment</button>
     </div>
-</div>
 
+    <div id="messages">
+
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/3.6.5/firebase.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/simplechat.js"></script>
     <script>
-        var person;
-        function myFunction() {
-            person = prompt("Please enter your name", "Batman");
-            if (person != null) {
-                document.getElementById("my-name").innerHTML = person;
-            }
-            var city = prompt("Please enter your city", "Gotham");
-            if (city != null) {
-                document.getElementById("city").innerHTML = city;
-            }
-            var colour = prompt("Please enter your favourite colour", "Yellow");
-            if (colour != null) {
-                document.getElementById("my-name").style.color = colour;
-            }
-        }
+        var chat = new Chat();
 
-        $("#simple-send").on("click", function(e) {
-            $("#simple-comments ul").append("<li>" + person + ": " + $("#simple-comment").val() + "</li>");
-            $("#simple-comment").val("");
-        });
-
+        chat.setMessageInput($("#message"));
+        chat.setDisplayNameInput($("#name"));
+        chat.setSubmitButton($("#send"));
+        chat.setSignInButton($("#signin"));
+        chat.setSignOutButton($("#signout"));
+        chat.setMessageList($("#messages"));
     </script>
 
+    <script>
+        $("#send").on("click", function(){chat.sendMessage()});
+        $("#signin").on("click", function(){chat.signIn()});
+        $("#signout").on("click", function(){chat.signOut()});
+    </script>
+
+    <script>
+        chat.listenForMessages();
+    </script>
 
 </div>
 </body>
